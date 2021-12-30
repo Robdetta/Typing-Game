@@ -1,0 +1,12 @@
+.cursor {
+  background-color: aqua;
+}
+
+.done {
+  color: #bbb;
+}
+
+#typing {
+  margin: 0 auto;
+  width: 300px;
+}
