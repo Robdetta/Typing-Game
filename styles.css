@@ -10,3 +10,12 @@
   margin: 0 auto;
   width: 300px;
 }
+
+#stats {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
