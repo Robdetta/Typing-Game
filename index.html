@@ -8,8 +8,33 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="stats"></div>
     <div id="quoteDisplay"></div>
+    <div>
+      <input
+        class="form-check-input"
+        type="radio"
+        name="database"
+        id="kayne"
+        value="kayne"
+        checked
+        onclick="fn1();"
+      />
+      <label for="kayne" id="kayneLabel">Kayne West</label>
+    </div>
+    <div>
+      <input
+        class="form-check-input"
+        type="radio"
+        name="database"
+        id="jaden"
+        value="jaden"
+        onclick="fn1();"
+      />
+      <label for="jaden" id="jadenLabel">Jaden Smith</label>
+    </div>
+    <div id="stats"></div>
+    <div id="level"></div>
+    <div id="score"></div>
     <button id="start-game" onclick="startGame();">Start Game</button>
     <script src="index.js"></script>
   </body>

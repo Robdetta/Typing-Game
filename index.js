@@ -4,21 +4,67 @@ const typingDiv = document.getElementById("quoteDisplay");
 const statsDiv = document.getElementById("stats");
 const startGameBtn = document.getElementById("start-game");
 
-const randomKayneQuote = "https://api.kanye.rest/";
+var kayne = document.getElementById("kayne");
+var jaden = document.getElementById("jaden");
 
-// const pharagraphs = [`${renderNewQuote()}`];
+let currentLevel = 1;
+let score = 0;
 
-const pharagraphs = [
-  `Here with a dilemma A dip with an umbrella out my cellar Let her in quick, the medicine sip, whatever I'm clever on some accapella shit, that's my main strength`,
-  `But never been too bad, as well, at this gettin brains thing I think the light's dim Not the type to fight gin`,
-  `And bent like, psyched to hit the bed and strike skins Right then the phone ringin, but left it-Blowing in the night like the west`,
-  `wind crescent My preference is a heavy snare Yes, instead of some soft shit, got a sweaty pair of breath mints`,
-];
+// let level = document.getElementById("level").innerText;
+
+//const randomKayneQuote = "https://api.kanye.rest/";
+
+// let radioBtns = document.querySelectorAll("input[name='database']");
+
+// let findSelected = () => {
+//   let selected = document.querySelector("input[name='database']:checked").value;
+//   // console.log(selected);
+// };
+
+// radioBtns.forEach((radioBtn) => {
+//   radioBtn.addEventListener("change", findSelected);
+// });
+
+let pharagraphs = [];
+
+function fn1() {
+  // var kayne = document.getElementById("kayne");
+  // var jaden = document.getElementById("jaden");
+  if (kayne.checked === true)
+    fetch("kayne.json").then((res) => {
+      return res.json().then((loadedQuote) => {
+        pharagraphs = loadedQuote;
+      });
+    });
+  else if (jaden.checked === true)
+    fetch("jaden.json").then((res) => {
+      return res.json().then((loadedQuote) => {
+        pharagraphs = loadedQuote;
+      });
+    });
+}
+
+fn1();
+// Radio buttons or checkbox buttons ??
+
+if (currentLevel === 10) {
+  startGameBtn.classList.add("hidden");
+}
 
 const startGame = () => {
   startGameBtn.classList.add("hidden");
+  kayne.classList.add("hidden");
+  kayneLabel.classList.add("hidden");
+  jaden.classList.add("hidden");
+  jadenLabel.classList.add("hidden");
   typingDiv.innerHTML = "";
   statsDiv.innerHTML = "";
+
+  //Display Current Level
+  document.getElementById("level").innerText = `level = ${currentLevel}`;
+
+  //Display Score
+  document.getElementById("score").innerText = `score = ${score}`;
 
   const text = pharagraphs[parseInt(Math.random() * pharagraphs.length)];
 
@@ -55,32 +101,26 @@ const startGame = () => {
       const numberOfWords = text.split(" ").length;
       const wps = numberOfWords / seconds;
       const wpm = wps * 60.0;
-      document.getElementById("stats").innerText = `wpm = ${wpm}`;
+      let wpmRound = Math.floor(wpm);
+      document.getElementById("stats").innerText = `wpm = ${wpmRound}`;
+      score = score + wpmRound;
+      document.getElementById("score").innerText = `score = ${score}`;
+      currentLevel = ++currentLevel;
+
+      console.log(currentLevel);
       // display the wpm, cpm
       document.removeEventListener("keydown", keydown);
-      startGameBtn.classList.remove("hidden");
+
+      //startGame();
+      if (currentLevel <= 10) {
+        startGameBtn.classList.remove("hidden");
+      } else {
+        //startGameBtn.classList.add("hidden");
+        typingDiv.classList.add("hidden");
+      }
       return;
     }
     cursorCharacter.classList.add("cursor");
   };
   document.addEventListener("keydown", keydown);
 };
-
-function getRandomQuote() {
-  return fetch(randomKayneQuote)
-    .then((response) => response.json())
-    .then((data) => data.quote);
-}
-
-async function renderNewQuote() {
-  const quote = await getRandomQuote();
-  typingDiv.innerText = quote;
-
-  // quote.split("").map((character) => {
-  //   const characterSpan = document.createElement("span");
-  //   characterSpan.innerText = character;
-  //   typingDiv.appendChild(characterSpan);
-  // });
-
-  console.log(quote);
-}
