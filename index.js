@@ -3,6 +3,7 @@
 const typingDiv = document.getElementById("quoteDisplay");
 const statsDiv = document.getElementById("stats");
 const startGameBtn = document.getElementById("start-game");
+const whoSays = document.getElementById("whoSays");
 
 var kayne = document.getElementById("kayne");
 var jaden = document.getElementById("jaden");
@@ -10,36 +11,26 @@ var jaden = document.getElementById("jaden");
 let currentLevel = 1;
 let score = 0;
 
-// let level = document.getElementById("level").innerText;
-
-//const randomKayneQuote = "https://api.kanye.rest/";
-
-// let radioBtns = document.querySelectorAll("input[name='database']");
-
-// let findSelected = () => {
-//   let selected = document.querySelector("input[name='database']:checked").value;
-//   // console.log(selected);
-// };
-
-// radioBtns.forEach((radioBtn) => {
-//   radioBtn.addEventListener("change", findSelected);
-// });
+//animation for startbutton
+startGameBtn.classList.add("pound");
 
 let pharagraphs = [];
 
 function fn1() {
-  // var kayne = document.getElementById("kayne");
-  // var jaden = document.getElementById("jaden");
+  //when radio checked for kayne
   if (kayne.checked === true)
     fetch("kayne.json").then((res) => {
       return res.json().then((loadedQuote) => {
         pharagraphs = loadedQuote;
+        document.getElementById("whoSays").innerText = `Kayne Says type this`;
       });
     });
+  //when radio checked for jaden
   else if (jaden.checked === true)
     fetch("jaden.json").then((res) => {
       return res.json().then((loadedQuote) => {
         pharagraphs = loadedQuote;
+        document.getElementById("whoSays").innerText = `Jaden Says type this`;
       });
     });
 }
@@ -52,6 +43,7 @@ if (currentLevel === 10) {
 }
 
 const startGame = () => {
+  //remove elements before starting game and add one
   startGameBtn.classList.add("hidden");
   kayne.classList.add("hidden");
   kayneLabel.classList.add("hidden");
@@ -59,6 +51,8 @@ const startGame = () => {
   jadenLabel.classList.add("hidden");
   typingDiv.innerHTML = "";
   statsDiv.innerHTML = "";
+  whoSays.classList.remove("hidden");
+  whoSays.classList.add("pulse");
 
   //Display Current Level
   document.getElementById("level").innerText = `level = ${currentLevel}`;
@@ -66,6 +60,7 @@ const startGame = () => {
   //Display Score
   document.getElementById("score").innerText = `score = ${score}`;
 
+  //grab random quote from file
   const text = pharagraphs[parseInt(Math.random() * pharagraphs.length)];
 
   const characters = text.split("").map((char) => {
@@ -107,6 +102,7 @@ const startGame = () => {
       document.getElementById("score").innerText = `score = ${score}`;
       currentLevel = ++currentLevel;
 
+      //Animation of Object responding to text will go here, maybe use progress bar tied to the quote and set breakpoints to 4 levels of animation
       console.log(currentLevel);
       // display the wpm, cpm
       document.removeEventListener("keydown", keydown);

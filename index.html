@@ -5,11 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link href="http://fonts.cdnfonts.com/css/graffiti-font" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="wickedcss.min.css" />
   </head>
   <body>
+    <div id="whoSays" class="hidden"></div>
     <div id="quoteDisplay"></div>
-    <div>
+    <div class="kayneRadio">
       <input
         class="form-check-input"
         type="radio"
@@ -21,7 +30,7 @@
       />
       <label for="kayne" id="kayneLabel">Kayne West</label>
     </div>
-    <div>
+    <div class="jadenRadio">
       <input
         class="form-check-input"
         type="radio"
@@ -32,10 +41,16 @@
       />
       <label for="jaden" id="jadenLabel">Jaden Smith</label>
     </div>
-    <div id="stats"></div>
-    <div id="level"></div>
-    <div id="score"></div>
-    <button id="start-game" onclick="startGame();">Start Game</button>
+    <ul id="hud">
+      <div id="stats"></div>
+      <div id="level"></div>
+      <div id="score"></div>
+    </ul>
+    <div class="text-center">
+      <button id="start-game" " onclick="startGame();">
+        Start Game
+      </button>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

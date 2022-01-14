@@ -2,18 +2,34 @@
   background-color: aqua;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#whoSays {
+  position: absolute;
+  top: 20rem;
+  font-family: "Graffiti font", sans-serif;
+}
+
+.text-center {
+  position: absolute;
+  font-family: "Graffiti font", sans-serif;
+  bottom: 25rem;
+}
+
+#hud {
+  position: absolute;
+  bottom: 15rem;
+  font-family: "Graffiti font", sans-serif;
+}
+
 .done {
   color: pink;
-}
-
-#typing {
-  margin: 0 auto;
-  width: 300px;
-}
-
-#stats {
-  margin: 0 auto;
-  width: 300px;
 }
 
 .hidden {
