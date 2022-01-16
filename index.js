@@ -4,12 +4,14 @@ const typingDiv = document.getElementById("quoteDisplay");
 const statsDiv = document.getElementById("stats");
 const startGameBtn = document.getElementById("start-game");
 const whoSays = document.getElementById("whoSays");
+const car = document.getElementById("car");
 
 var kayne = document.getElementById("kayne");
 var jaden = document.getElementById("jaden");
 
 let currentLevel = 1;
 let score = 0;
+let percentage = 0;
 
 //animation for startbutton
 startGameBtn.classList.add("pound");
@@ -67,29 +69,41 @@ const startGame = () => {
     const span = document.createElement("span");
     span.innerText = char;
     typingDiv.appendChild(span);
+
     return span;
   });
 
   let cursorIndex = 0;
   let cursorCharacter = characters[0];
   cursorCharacter.classList.add("cursor");
-
   let startTime = null;
+
+  // function charPercentage(typedIndex, totalWords) {
+  //   return (100 * typedIndex) / totalWords;
+  // }
 
   const keydown = ({ key }) => {
     console.log(key);
     if (!startTime) {
       startTime = new Date();
     }
-
+    car.classList.remove("shake");
     if (key === cursorCharacter.innerText) {
       //We typed correct key
+      let percentage = (100 * cursorIndex) / characters.length;
       cursorCharacter.classList.remove("cursor");
       cursorCharacter.classList.add("done");
+      car.classList.add("shake");
+      if (percentage >= 10) {
+        car.classList.add("destroyedCar");
+      }
       cursorCharacter = characters[++cursorIndex];
+      console.log(percentage);
     }
+
     if (cursorIndex >= characters.length) {
       //Game ended
+
       const endTime = new Date();
       const delta = endTime - startTime;
       const seconds = delta / 1000;
@@ -116,6 +130,7 @@ const startGame = () => {
       }
       return;
     }
+
     cursorCharacter.classList.add("cursor");
   };
   document.addEventListener("keydown", keydown);

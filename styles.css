@@ -9,10 +9,17 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+#car {
+  clip-path: inset(380px 0px 120px 390px);
+  position: absolute;
+  left: 25%;
+  top: -10%;
+  /*inset (top-bottom , ,right-left ,)   */
+}
 
 #whoSays {
   position: absolute;
-  top: 20rem;
+  top: 10rem;
   font-family: "Graffiti font", sans-serif;
 }
 
