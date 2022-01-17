@@ -1,10 +1,12 @@
 "use strict";
-
+const express = require("express");
 const typingDiv = document.getElementById("quoteDisplay");
 const statsDiv = document.getElementById("stats");
 const startGameBtn = document.getElementById("start-game");
 const whoSays = document.getElementById("whoSays");
 const car = document.getElementById("car");
+
+const app = express();
 
 var kayne = document.getElementById("kayne");
 var jaden = document.getElementById("jaden");
